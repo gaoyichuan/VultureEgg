@@ -5,7 +5,7 @@
 <package type> ::= "Egg" | "Weather"
 
 if <package type> = "Egg"  <package body> ::= <蓝牙UUID>;<unix时间戳>;<加速度数据>;<陀螺仪数据>;<温度数据>;<湿度数据>
-if <package type> = "Weather"  <package body> ::= <unix时间戳>;<温度数据>;<湿度数据>;<光照数据>
+if <package type> = "Weather"  <package body> ::= <unix时间戳>;<温度数据>;<湿度数据>;<光照数据>;<气压数据>
 
     <蓝牙UUID> ::= <CC2540 UUID,hexadecimal>
   <unix时间戳> ::= <UNIX timestamp,decimal,UTC+8>
@@ -19,6 +19,7 @@ if <package type> = "Weather"  <package body> ::= <unix时间戳>;<温度数据>
 	<temp01>,<temp02>,...,<temp14> ::= <float,单位℃>
     <湿度数据> ::= <float,单位%RH>
     <光照数据> ::= <float,单位lux>
+    <气压数据> ::= <int,单位Pa>
 ```
 
 #样例数据
@@ -31,7 +32,9 @@ UUID：0xEEF0；时间戳：1405094400(2014-7-12 0:00:00 UTC+8)；三轴加速�
 ```
 ##气象站数据
 ```
-样例数据略
+"Weather;1405094400;32.6;68.2;684.4;101325"
+样例数据：
+时间戳：1405094400(2014-7-12 0:00:00 UTC+8)；气温：32.6℃；湿度68.2%RH；光照684.4lux；气压101325Pa。
 ```
 
 #备注
