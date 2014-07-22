@@ -17,24 +17,6 @@ INSERT INTO `Egg_TMP`.`EEF0` (`Time`, `Temp-01`, `Temp-02`, `Temp-03`, `Temp-04`
 
 
 #Weather_Data_Sample
-
-
-##Weather_HUM
 ```
-INSERT INTO `Weather_HUM`.`EEF0` (`Time`, `Humidity`) VALUES (FROM_UNIXTIME('1405094400'), '68.2');
-```
-
-##Weather_LIG
-```
-INSERT INTO `Weather_LIG`.`EEF0` (`Time`, `Light`) VALUES (FROM_UNIXTIME('1405094400'), '684.4');
-```
-
-##Weather_PRE
-```
-INSERT INTO `Weather_PRE`.`EEF0` (`Time`, `Pressure`) VALUES (FROM_UNIXTIME('1405094400'), '101325');
-```
-
-##Weather_TMP
-```
-INSERT INTO `Weather_TMP`.`EEF0` (`Time`, `Temperature`) VALUES (FROM_UNIXTIME('1405094400'), '32.6');
+INSERT INTO `Weather`.`EEF0` (`Time`, `Humidity`, `Light`, `Pressure`, `Temperature`) VALUES (FROM_UNIXTIME('1405094400'), '68.2', '684.4', '101325', '32.6');
 ```
