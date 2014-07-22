@@ -7,7 +7,7 @@ rpi.cpp = Main Source File
 ```
 
 #Requirements
-*wiringPi Library & MySQL_Client Library*
+*wiringPi Library & MySQL_Client Library*    
 *How to install them*
 ```
 MySQL_Client:http://dev.mysql.com/tech-resources/articles/building-mysql-connector-cpp.html
