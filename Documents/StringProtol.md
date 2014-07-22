@@ -4,7 +4,7 @@
      <package> ::= <package type>;<package body>
 <package type> ::= "Egg" | "Weather"
 
-if <package type> = "Egg"  <package body> ::= <蓝牙UUID>;<unix时间戳>;<加速度数据>;<陀螺仪数据>;<温度数据>;<湿度数据>
+if <package type> = "Egg"  <package body> ::= <蓝牙UUID>;<unix时间戳>;[<加速度数据>];[<陀螺仪数据>];[<温度数据>];[<湿度数据>]
 if <package type> = "Weather"  <package body> ::= <unix时间戳>;<温度数据>;<湿度数据>;<光照数据>;<气压数据>
 
     <蓝牙UUID> ::= <CC2540 UUID,hexadecimal>
@@ -41,4 +41,5 @@ UUID：0xEEF0；时间戳：1405094400(2014-7-12 0:00:00 UTC+8)；三轴加速�
 ```
 全部浮点数据保留符号，保留一位小数
 数据内部不要出现,与; 避免与分隔符引起歧义
+加速度与陀螺仪数据必须同时发送
 ```
