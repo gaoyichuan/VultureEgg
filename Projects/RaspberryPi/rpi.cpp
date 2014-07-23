@@ -178,8 +178,8 @@ int main()
                     rx_buf_len++;
                 }
             }
-            usleep(80);
         }
+        usleep(80);
     }
     serialClose(fd);
     return 0;
