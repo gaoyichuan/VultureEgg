@@ -176,7 +176,7 @@ int main()
 				buf[i] = 0;
 			}
 			if(serialDataAvail(fd) == 0) dataflag = 0;
-			i++;
+			if(i <= RX_BUF_SIZE) i++;
 			usleep(80);
 		}
 		cout<<"Data:"<<buf<<endl;
