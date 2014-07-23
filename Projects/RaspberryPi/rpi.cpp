@@ -11,6 +11,7 @@
 using namespace std;
 char Package_Type[8],Egg_UUID[6],Timestamp[12],Egg_Acc_Data[30],Egg_Gyro_Data[30],Temp_Data[100],Humi_Data[10],Weather_Light_Data[15],Weather_Pressure_Data[15];
 CMyDB my;
+int i;
 
 char* get_token(char* buf, const char deli) {
     if (buf == NULL) return NULL;
@@ -152,7 +153,7 @@ int main()
 {
 	cout<<"Open serial port."<<endl;
 	int fd = serialOpen("/dev/ttyAMA0",115200);
-	int datalength,dataflag,i;
+	int datalength,dataflag;
 	char gotdata;
 	char buf[RX_BUF_SIZE];
 	my.initDB("localhost" , "root", "root" , "" );
@@ -184,11 +185,7 @@ int main()
 		strcpy(data,"");
 		gotdata = 0;
 		i = 0;
-		for (int byte = 0;byte < RX_BUF_SIZE;byte++)
-		{
-			buf[byte] = 0;
-		}
-		sleep(1);
+		memset(buf,0,RX_BUF_SIZE)
 	}
 	serialClose(fd);
 	return 0;
