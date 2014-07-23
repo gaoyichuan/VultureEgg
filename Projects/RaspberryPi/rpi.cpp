@@ -154,38 +154,32 @@ int main()
 	cout<<"Open serial port."<<endl;
 	int fd = serialOpen("/dev/ttyAMA0",115200);
 	int datalength,dataflag;
-	char gotdata;
-	char buf[RX_BUF_SIZE];
+	char ch;
+	char rx_buf[RX_BUF_SIZE];
+    int  rx_buf_len;
 	my.initDB("localhost" , "root", "root" , "" );
 	while(1)
 	{
 		cout<<"FD:"<<fd<<". "<<"Start waiting."<<endl;
-		while((serialDataAvail(fd) == 0) || (serialDataAvail(fd) == -1));
-		dataflag = 1;
-		datalength = serialDataAvail(fd);
-		cout<<"Dude! There's some data. "<<"Length:"<<datalength<<"."<<endl;
-		while(dataflag)
-		{
-			gotdata = serialGetchar(fd);
-			cout<<gotdata;
-			buf[i] = gotdata;
-			if(gotdata == 0x0A && buf[i-1] == 0x0D)
-			{
-				dataflag = 0;
-				buf[i-1] = 0;
-				buf[i] = 0;
-			}
-			if(serialDataAvail(fd) == 0) dataflag = 0;
-			if(i <= RX_BUF_SIZE) i++;
+		if (serialDataAvail(fd)) {;
+			ch = serialGetchar(fd);
+			cout<<ch;
+			rx_buf[rx_buf_len] = ch;
+			if ((rx_buf_len > 2) && (ch == 0x0A && buf[rx_buf_len - 1] == 0x0D)) {
+				buf[rx_buf_len - 1] = 0;
+                cout<<"Data:"<<buf<<endl;
+                char *data = buf;
+                Data_Parse(data);
+                rx_buf_len = 0;
+                memset(buf, 0, sizeof(buf));
+            } else {
+                rx_buf[rx_buf_len] = ch;
+                if (rx_buf_len < RX_BUF_SIZE) {
+                    rx_buf_len++;
+                }
+            }
 			usleep(80);
 		}
-		cout<<"Data:"<<buf<<endl;
-		char *data = buf;
-		Data_Parse(data);
-		strcpy(data,"");
-		gotdata = 0;
-		i = 0;
-		memset(buf,0,RX_BUF_SIZE)
 	}
 	serialClose(fd);
 	return 0;
