@@ -155,15 +155,16 @@ int main()
     int fd = serialOpen("/dev/ttyAMA0",115200);
     int datalength,dataflag;
     char ch;
-    char rx_buf[RX_BUF_SIZE];
+    char buf[RX_BUF_SIZE];
     int  rx_buf_len;
     my.initDB("localhost" , "root", "root" , "" );
     while(1)
     {
-        while (serialDataAvail(fd)) {;
+        int data = serialDataAvail(fd);
+		while (data > 0) {;
             ch = serialGetchar(fd);
             cout<<ch;
-            rx_buf[rx_buf_len] = ch;
+            buf[rx_buf_len] = ch;
             if ((rx_buf_len > 2) && (ch == 0x0A && buf[rx_buf_len - 1] == 0x0D)) {
                 //cout<<"FD:"<<fd<<". "<<"Start waiting."<<endl;
                 buf[rx_buf_len - 1] = 0;
@@ -173,11 +174,11 @@ int main()
                 rx_buf_len = 0;
                 memset(buf, 0, sizeof(buf));
             } else {
-                rx_buf[rx_buf_len] = ch;
                 if (rx_buf_len < RX_BUF_SIZE) {
                     rx_buf_len++;
                 }
             }
+			data = serialDataAvail(fd);
         }
         usleep(80);
     }
