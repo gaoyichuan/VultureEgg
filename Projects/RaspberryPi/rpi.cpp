@@ -161,7 +161,7 @@ int main()
     while(1)
     {
         cout<<"FD:"<<fd<<". "<<"Start waiting."<<endl;
-        if (serialDataAvail(fd)) {;
+        while (serialDataAvail(fd)) {;
             ch = serialGetchar(fd);
             cout<<ch;
             rx_buf[rx_buf_len] = ch;
