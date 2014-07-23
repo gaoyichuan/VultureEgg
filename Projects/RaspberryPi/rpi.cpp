@@ -161,7 +161,7 @@ int main()
     while(1)
     {
         int data = serialDataAvail(fd);
-		while (data > 0) {;
+	while (data > 0) {
             ch = serialGetchar(fd);
             cout<<ch;
             buf[rx_buf_len] = ch;
@@ -178,7 +178,7 @@ int main()
                     rx_buf_len++;
                 }
             }
-			data = serialDataAvail(fd);
+        data = serialDataAvail(fd);
         }
         usleep(80);
     }
