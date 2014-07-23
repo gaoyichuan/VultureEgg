@@ -160,12 +160,12 @@ int main()
     my.initDB("localhost" , "root", "root" , "" );
     while(1)
     {
-        cout<<"FD:"<<fd<<". "<<"Start waiting."<<endl;
         while (serialDataAvail(fd)) {;
             ch = serialGetchar(fd);
             cout<<ch;
             rx_buf[rx_buf_len] = ch;
             if ((rx_buf_len > 2) && (ch == 0x0A && buf[rx_buf_len - 1] == 0x0D)) {
+                //cout<<"FD:"<<fd<<". "<<"Start waiting."<<endl;
                 buf[rx_buf_len - 1] = 0;
                 cout<<"Data:"<<buf<<endl;
                 char *data = buf;
