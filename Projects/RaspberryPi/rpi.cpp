@@ -10,6 +10,7 @@
 
 using namespace std;
 char Package_Type[8],Egg_UUID[6],Timestamp[12],Egg_Acc_Data[30],Egg_Gyro_Data[30],Temp_Data[100],Humi_Data[10],Weather_Light_Data[15],Weather_Pressure_Data[15];
+CMyDB my;
 
 char* get_token(char* buf, const char deli) {
     if (buf == NULL) return NULL;
@@ -51,8 +52,6 @@ void Clear_String_Buffers()
 
 void MySQL_Write(int type)
 {
-	CMyDB my;
-	my.initDB("localhost" , "root", "root" , "" );
 	ostringstream MySQL_Command;
 	switch(type)
 	{
@@ -156,6 +155,7 @@ int main()
 	int datalength,dataflag,i;
 	char gotdata;
 	char buf[RX_BUF_SIZE];
+	my.initDB("localhost" , "root", "root" , "" );
 	while(1)
 	{
 		cout<<"FD:"<<fd<<". "<<"Start waiting."<<endl;
