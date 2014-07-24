@@ -9,7 +9,7 @@
 #define RX_BUF_SIZE 200
 
 using namespace std;
-char Package_Type[8],Egg_UUID[6],Timestamp[12],Egg_Acc_Data[30],Egg_Gyro_Data[30],Temp_Data[100],Humi_Data[10],Weather_Light_Data[15],Weather_Pressure_Data[15];
+char Package_Type[8],Egg_UUID[14],Timestamp[12],Egg_Acc_Data[30],Egg_Gyro_Data[30],Temp_Data[100],Humi_Data[10],Weather_Light_Data[15],Weather_Pressure_Data[15];
 CMyDB my;
 int i;
 
